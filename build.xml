@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="simplelogin" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.6" value="${jdk.home.1.6}/bin"/>
+  <path id="jdk.classpath.1.6">
+    <fileset dir="${jdk.home.1.6}">
+      <include name="lib/deploy.jar"/>
+      <include name="lib/dt.jar"/>
+      <include name="lib/javaws.jar"/>
+      <include name="lib/jce.jar"/>
+      <include name="lib/jconsole.jar"/>
+      <include name="lib/management-agent.jar"/>
+      <include name="lib/plugin.jar"/>
+      <include name="lib/sa-jdi.jar"/>
+      <include name="../Classes/charsets.jar"/>
+      <include name="../Classes/classes.jar"/>
+      <include name="../Classes/jsse.jar"/>
+      <include name="../Classes/ui.jar"/>
+      <include name="lib/ext/apple_provider.jar"/>
+      <include name="lib/ext/dnsns.jar"/>
+      <include name="lib/ext/localedata.jar"/>
+      <include name="lib/ext/sunjce_provider.jar"/>
+      <include name="lib/ext/sunpkcs11.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.6}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.6}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.6"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.java_ee_6-java_ee_6.classpath">
+    <pathelement location="${basedir}/lib/javax.annotation.jar"/>
+    <pathelement location="${basedir}/lib/javax.ejb.jar"/>
+    <pathelement location="${basedir}/lib/javax.jms.jar"/>
+    <pathelement location="${basedir}/lib/javax.persistence.jar"/>
+    <pathelement location="${basedir}/lib/javax.resource.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jsp.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jsp.jstl.jar"/>
+    <pathelement location="${basedir}/lib/javax.transaction.jar"/>
+  </path>
+  
+  
+  <!-- Application Server Libraries -->
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module simpleLogin -->
+  
+  <dirname property="module.simplelogin.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.simplelogin" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.simplelogin" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.simplelogin" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.simplelogin" value="${compiler.args}"/>
+  
+  <property name="simplelogin.output.dir" value="${module.simplelogin.basedir}/out/production/simpleLogin"/>
+  <property name="simplelogin.testoutput.dir" value="${module.simplelogin.basedir}/out/test/simpleLogin"/>
+  
+  <path id="simplelogin.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="simplelogin.module.production.classpath">
+    <path refid="${module.jdk.classpath.simplelogin}"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+  </path>
+  
+  <path id="simplelogin.runtime.production.module.classpath">
+    <pathelement location="${simplelogin.output.dir}"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+  </path>
+  
+  <path id="simplelogin.module.classpath">
+    <path refid="${module.jdk.classpath.simplelogin}"/>
+    <pathelement location="${simplelogin.output.dir}"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+  </path>
+  
+  <path id="simplelogin.runtime.module.classpath">
+    <pathelement location="${simplelogin.testoutput.dir}"/>
+    <pathelement location="${simplelogin.output.dir}"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.simplelogin">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.simplelogin">
+    <patternset refid="excluded.from.module.simplelogin"/>
+  </patternset>
+  
+  <path id="simplelogin.module.sourcepath">
+    <dirset dir="${module.simplelogin.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.simplelogin" depends="compile.module.simplelogin.production,compile.module.simplelogin.tests" description="Compile module simpleLogin"/>
+  
+  <target name="compile.module.simplelogin.production" description="Compile module simpleLogin; production classes">
+    <mkdir dir="${simplelogin.output.dir}"/>
+    <javac destdir="${simplelogin.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.simplelogin}/javac">
+      <compilerarg line="${compiler.args.simplelogin}"/>
+      <bootclasspath refid="simplelogin.module.bootclasspath"/>
+      <classpath refid="simplelogin.module.production.classpath"/>
+      <src refid="simplelogin.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.simplelogin"/>
+    </javac>
+    
+    <copy todir="${simplelogin.output.dir}">
+      <fileset dir="${module.simplelogin.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.simplelogin.tests" depends="compile.module.simplelogin.production" description="compile module simpleLogin; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.simplelogin" description="cleanup module">
+    <delete dir="${simplelogin.output.dir}"/>
+    <delete dir="${simplelogin.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.simplelogin, clean.artifact.simplelogin:ear_exploded, clean.artifact.simplelogin:war_exploded" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.simplelogin" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.simplelogin:ear_exploded" value="${basedir}/out/artifacts/simpleLogin_ear_exploded"/>
+    <property name="artifact.output.simplelogin:war_exploded" value="${basedir}/out/artifacts/simpleLogin_war_exploded"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="clean.artifact.simplelogin:ear_exploded" description="clean simpleLogin:ear exploded artifact output">
+    <delete dir="${artifact.output.simplelogin:ear_exploded}"/>
+  </target>
+  
+  <target name="clean.artifact.simplelogin:war_exploded" description="clean simpleLogin:war exploded artifact output">
+    <delete dir="${artifact.output.simplelogin:war_exploded}"/>
+  </target>
+  
+  <target name="artifact.simplelogin:ear_exploded" depends="init.artifacts" description="Build &#39;simpleLogin:ear exploded&#39; artifact">
+    <mkdir dir="${artifact.output.simplelogin:ear_exploded}"/>
+  </target>
+  
+  <target name="artifact.simplelogin:war_exploded" depends="init.artifacts, compile.module.simplelogin" description="Build &#39;simpleLogin:war exploded&#39; artifact">
+    <mkdir dir="${artifact.output.simplelogin:war_exploded}"/>
+    <copy todir="${artifact.output.simplelogin:war_exploded}">
+      <fileset dir="${basedir}/web"/>
+    </copy>
+    <mkdir dir="${artifact.output.simplelogin:war_exploded}/WEB-INF"/>
+    <copy file="${basedir}/web/WEB-INF/web.xml" tofile="${artifact.output.simplelogin:war_exploded}/WEB-INF/web.xml"/>
+    <mkdir dir="${artifact.output.simplelogin:war_exploded}/WEB-INF"/>
+    <mkdir dir="${artifact.output.simplelogin:war_exploded}/WEB-INF/classes"/>
+    <copy todir="${artifact.output.simplelogin:war_exploded}/WEB-INF/classes">
+      <fileset dir="${simplelogin.output.dir}"/>
+    </copy>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.simplelogin:ear_exploded, artifact.simplelogin:war_exploded" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
